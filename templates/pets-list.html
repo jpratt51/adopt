@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block title %}Edit Post{% endblock %}
+{% block content %}
+<h1>Pets</h1>
+<ul>
+    {% for pet in pets %}
+    <div><a href="/{{pet.id}}">{{pet.name}}</a>
+        <div>
+            <img src="{{pet.photo_url}}" alt="User image" class="w-25 p-3">
+            Available for adoption: <b>{{pet.available}}</b>
+        </div>
+    </div>
+    {% endfor %}
+</ul>
+<form action="/add">
+    <button>Add Pet</button>
+</form>
+{% endblock %}

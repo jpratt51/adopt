@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}Pet Details{% endblock %}
+{% block content %}
+<h1 class="display-1 text-center">{{pet.name}}</h1>
+<ul style="list-style: none">
+    <div class="">
+        <div class="text-center">
+            <img src="{{pet.photo_url}}" alt="User image" class="w-25 p-3">
+        </div>
+    </div>
+    <li class="text-center">
+        Available for adoption: <b>{{pet.available}}</b>
+    </li>
+    <li class="text-center">
+        {{pet.species}}
+    </li>
+    <li class="text-center">
+        Age in years: {{pet.age}}
+    </li>
+    {% if pet.notes != "" %}
+    <li class="text-center">
+        {{pet.notes}}
+    </li>
+    {% endif %}
+</ul>
+<div class="container">
+    <h1 class="display-1 text-center">Edit Pet Form</h1>
+        <div class="row justify-content-center">
+          <div>
+                <form method="POST">
+                {{form.hidden_tag()}}
+                {% for field in form if field.widget.input_type != 'hidden' %}
+               <div class="form-group">
+                    {{field.label}}
+                   {{field}}
+    
+                   {% for err in field.errors %}
+                   {{err}}
+                   {% endfor %}
+               </div>
+               {% endfor %}
+                <button class="btn btn-outline-primary m-2">Submit</button>
+               </form>
+         </div>
+        </div>
+    </div>
+{% endblock %}
